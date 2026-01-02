@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
 
 //TODO: Use Prisma for database objects
@@ -16,17 +15,6 @@ declare module "next-auth" {
     }
 }
 
-// For demo purposes - in a real app, you would use a database
-const users = [
-    {
-        id: "1",
-        name: "Demo User",
-        email: "demo@example.com",
-        password: "password123", // Never store plain text passwords in a real app!
-        image: "https://via.placeholder.com/150"
-    }
-];
-
 // Define the auth options with proper typing
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -34,26 +22,6 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
-        CredentialsProvider({
-            name: "Email and Password",
-            credentials: {
-                email: { label: "Email", type: "email", placeholder: "hello@example.com" },
-                password: { label: "Password", type: "password" }
-            },
-            async authorize(credentials) {
-                if (!credentials?.email || !credentials.password) {
-                    return null;
-                }
-                // In a real application, you would look this up in a database
-                const user = users.find(user => user.email === credentials.email);
-                if (!user || user.password !== credentials.password) {
-                    return null;
-                }
-                // Return user without the password
-                const { password, ...userWithoutPassword } = user;
-                return userWithoutPassword;
-            }
-        })
     ],
     pages: {
         signIn: '/signin',
