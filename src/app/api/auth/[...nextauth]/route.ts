@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { prisma } from "@/prisma"
 
 //TODO: Use Prisma for database objects
 // Add custom User type that includes id
@@ -17,6 +19,7 @@ declare module "next-auth" {
 
 // Define the auth options with proper typing
 export const authOptions: NextAuthOptions = {
+    adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -27,10 +30,6 @@ export const authOptions: NextAuthOptions = {
         signIn: '/signin',
         error: '/signin',
         signOut: '/'
-    },
-    session: {
-        strategy: "jwt", // Use JSON Web Tokens for session handling
-        maxAge: 30 * 24 * 60 * 60, // 30 days
     },
     debug: process.env.NODE_ENV === 'development',
     callbacks: {
