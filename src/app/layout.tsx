@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Lexend } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "./providers";
+import { AuthProvider, ThemeProvider } from "./providers";
 import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const lexend = Lexend({
   subsets: ["latin"],
 });
 
@@ -15,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Login App with NextAuth",
+  title: "Runefall",
   description: "Learn authentication with Next.js and NextAuth.js",
 };
 export default function RootLayout({
@@ -24,12 +28,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={lexend.className} suppressHydrationWarning>
       <body>
-        <AuthProvider>
-          <Navbar />
-          <main className="container mx-auto p-4">{children}</main>
-        </AuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <Navbar />
+            <main className="container mx-auto p-4">{children}</main>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
