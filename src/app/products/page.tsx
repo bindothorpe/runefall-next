@@ -9,6 +9,17 @@ export default async function ProductsPage() {
     expand: ["data.default_price"],
   });
 
+  // Sort products by price (low to high)
+  const sortedProducts = [...products.data].sort((a, b) => {
+    const priceA = a.default_price as Stripe.Price;
+    const priceB = b.default_price as Stripe.Price;
+
+    const amountA = priceA?.unit_amount || 0;
+    const amountB = priceB?.unit_amount || 0;
+
+    return amountA - amountB;
+  });
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-12 max-w-7xl">
@@ -17,7 +28,7 @@ export default async function ProductsPage() {
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {products.data.map((product) => {
+          {sortedProducts.map((product) => {
             const price = product.default_price as Stripe.Price;
             const amount = price?.unit_amount ? price.unit_amount / 100 : 0;
             const currency = price?.currency?.toUpperCase() || "USD";
@@ -100,7 +111,7 @@ export default async function ProductsPage() {
           })}
         </div>
 
-        {products.data.length === 0 && (
+        {sortedProducts.length === 0 && (
           <div className="text-center text-gray-500 mt-12">
             <p className="text-xl">No products available at the moment.</p>
           </div>
