@@ -11,9 +11,14 @@ import { lexend } from "@/app/fonts";
 import NavbarSeparator from "./NavbarSeparator";
 import { Home } from "./icons/Home";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
 export default function RunefallNavbar() {
   var pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
   console.log(`Pathname: ${pathname}`);
 
@@ -23,14 +28,40 @@ export default function RunefallNavbar() {
     }
   }, [pathname]);
 
+  // Close menu when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className={`w-full pt-6 px-6 fixed z-100 ${lexend.className}`}>
-      <header className="relative w-full max-w-screen-2xl mx-auto">
+      <header
+        className="relative w-full max-w-screen-2xl mx-auto"
+        ref={menuRef}
+      >
         {/* Content */}
-        <div className="relative bg-card rounded-xs overflow-hidden inset-ring-2 inset-ring-border shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+        <div className="relative bg-card rounded-xs inset-ring-2 inset-ring-border shadow-[0_0_20px_rgba(0,0,0,0.8)]">
           <span className="absolute inset-0 pointer-events-none before:content-[''] before:bg-no-repeat before:block before:absolute before:z-101 before:w-[14.5px] before:h-[14.5px] before:bg-[url('/images/components/container-corner.png')] before:bg-size-[14.5px] before:top-0 before:left-0 before:-rotate-180 after:bg-no-repeat after:content-[''] after:block after:absolute after:z-101 after:w-[14.5px] after:h-[14.5px] after:bg-[url('/images/components/container-corner.png')] after:bg-size-[14.5px] after:top-0 after:right-0 after:-rotate-90" />
           <span className="absolute inset-0 pointer-events-none before:content-[''] before:bg-no-repeat before:block before:absolute before:z-101 before:w-[14.5px] before:h-[14.5px] before:bg-[url('/images/components/container-corner.png')] before:bg-size-[14.5px] before:bottom-0 before:left-0 before:rotate-90 after:bg-no-repeat after:content-[''] after:block after:absolute after:z-101 after:w-[14.5px] after:h-[14.5px] after:bg-[url('/images/components/container-corner.png')] after:bg-size-[14.5px] after:bottom-0 after:right-0 -after:rotate-180" />
-          <div className="flex h-11 items-center justify-between">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex h-11 items-center justify-between">
             {/* Left side - Navigation */}
             <nav className="flex items-center gap-8">
               {/* Nav Links */}
@@ -49,7 +80,7 @@ export default function RunefallNavbar() {
                     </Link>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator hight="h-10" />
+                  <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
                     <Button
                       variant="hytale-link"
@@ -59,7 +90,7 @@ export default function RunefallNavbar() {
                     </Button>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator hight="h-10" />
+                  <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
                     <Link href={"/products"}>
                       <Button
@@ -73,7 +104,7 @@ export default function RunefallNavbar() {
                     </Link>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator hight="h-10" />
+                  <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
                     <Link href={"/"}>
                       <Button
@@ -103,6 +134,93 @@ export default function RunefallNavbar() {
               <Button variant={"hytale"} size={"sm"} className="h-8">
                 PLAY NOW
               </Button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            {/* Mobile Header */}
+            <div className="flex h-11 items-center justify-between pl-4 pr-1.5 relative">
+              <Button
+                variant="hytale-link"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+              </Button>
+
+              <Image
+                src="/images/branding/icon.png"
+                width={640}
+                height={640}
+                alt="Runefall logo small"
+                className="absolute left-1/2 -translate-x-1/2 -top-3 z-101 h-18 w-auto"
+              />
+
+              <Button variant={"hytale"} size={"sm"} className="h-8">
+                PLAY NOW
+              </Button>
+            </div>
+
+            {/* Mobile Menu - Expandable */}
+            <div
+              className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <nav className="flex flex-col py-4 px-6 gap-2">
+                <Separator className="!h-0.5 bg-linear-to-r from-[#2a194500] via-[#2A1945] to-[#2a194500] mt-4" />
+                <Link href={"/"} onClick={handleNavClick}>
+                  <Button
+                    variant="hytale-link"
+                    className="w-full justify-center"
+                  >
+                    HOME
+                  </Button>
+                </Link>
+
+                <Link href={"/games"} onClick={handleNavClick}>
+                  <Button
+                    variant="hytale-link"
+                    className="w-full justify-center"
+                  >
+                    GAMES
+                  </Button>
+                </Link>
+
+                <Link href={"/products"} onClick={handleNavClick}>
+                  <Button
+                    variant="hytale-link"
+                    className="w-full justify-center"
+                  >
+                    STORE
+                  </Button>
+                </Link>
+
+                <Link href={"/"} onClick={handleNavClick}>
+                  <Button
+                    variant="hytale-link"
+                    className="w-full justify-center"
+                  >
+                    SUPPORT
+                  </Button>
+                </Link>
+                <Separator className="!h-0.5 bg-linear-to-r from-[#2a194500] via-[#2A1945] to-[#2a194500]" />
+
+                <Link href={"/dashboard"} onClick={handleNavClick}>
+                  <Button
+                    variant="hytale-link"
+                    className="w-full justify-center"
+                  >
+                    ACCOUNT
+                  </Button>
+                </Link>
+              </nav>
             </div>
           </div>
         </div>
