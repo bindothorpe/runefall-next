@@ -21,6 +21,7 @@ const buttonVariants = cva(
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
         hytale: `relative bg-gradient-to-t from-[#4F0F7F] to-[#9936E3] text-primary-foreground hover:bg-gradient-to-t hover:from-[#601298] hover:to-[#A856E6] overflow-hidden border-2 border-black shadow-[0_0_0_2px_#46456A] hover:shadow-[0_0_0_2px_#5C5A8B] ${lexend.className}`,
+        "hytale-link": `relative bg-transparent text-[#A5BAC6] hover:text-[#D862ED] data-[current=true]:text-[#D862ED] transition-all duration-200 hover:drop-shadow-[0_0_8px_rgba(216,98,237,0.8)] data-[current=true]:drop-shadow-[0_0_8px_rgba(216,98,237,0.8)] ${lexend.className}`,
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
