@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
+import CtaContainer from "./components/CtaContainer";
+import { lexend, nunito_Sans } from "@/app/fonts";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -18,11 +21,29 @@ export default function HomePage() {
     }
   }, [status, callbackUrl, router]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh]">
-      <h1 className="text-4xl font-bold mb-8">Welcome to My Login App</h1>
-      <Button variant={"hytale"} className="w-60">
-        PLAY NOW
-      </Button>
+    <div className="flex flex-col items-center gap-10">
+      <Image
+        src="/images/branding/logo.png"
+        width={500}
+        height={500}
+        alt="Picture of the author"
+        className="pt-32 pb-12"
+      />
+
+      <div className="flex flex-col items-center justify-center gap-8">
+        <h1 className={`text-3xl font-bold ${lexend.className}`}>
+          Test your skills in our competitive games!
+        </h1>
+        <p className="text-xl font-light text-center">
+          Explore different games and compete <br></br>with your friends
+        </p>
+      </div>
+
+      <CtaContainer>
+        <Button variant={"hytale"} className="w-64" size={"hytale"}>
+          PLAY NOW
+        </Button>
+      </CtaContainer>
       {status === "loading" ? (
         <p className="text-lg">Loading...</p>
       ) : session ? (

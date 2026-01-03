@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { lexend, nunito_Sans } from "@/app/fonts";
 
 import { cn } from "@/lib/utils";
 
@@ -19,8 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        hytale:
-          "relative bg-gradient-to-t from-[#4F0F7F] to-[#9936E3] text-primary-foreground hover:bg-gradient-to-t hover:from-[#601298] hover:to-[#A856E6] overflow-hidden border-2 border-black shadow-[0_0_0_2px_#46456A] hover:shadow-[0_0_0_2px_#5C5A8B]",
+        hytale: `relative bg-gradient-to-t from-[#4F0F7F] to-[#9936E3] text-primary-foreground hover:bg-gradient-to-t hover:from-[#601298] hover:to-[#A856E6] overflow-hidden border-2 border-black shadow-[0_0_0_2px_#46456A] hover:shadow-[0_0_0_2px_#5C5A8B] ${lexend.className}`,
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -29,6 +29,7 @@ const buttonVariants = cva(
         icon: "size-9",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
+        hytale: "h-12 rounded-md px-6 has-[>svg]:px-4",
       },
     },
     defaultVariants: {
@@ -60,8 +61,8 @@ function Button({
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
-        <span className="button__topDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/button-corner.png')] before:bg-size-[12px] before:top-0 before:left-0 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/button-corner.png')] after:bg-size-[12px] after:top-0 after:right-0 after:rotate-90" />
-        <span className="button__bottomDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/button-corner.png')] before:bg-size-[12px] before:bottom-0 before:left-0 before:-rotate-90 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/button-corner.png')] after:bg-size-[12px] after:bottom-0 after:right-0 after:rotate-180" />
+        <span className="button__topDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:top-0 before:left-0 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:top-0 after:right-0 after:rotate-90" />
+        <span className="button__bottomDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:bottom-0 before:left-0 before:-rotate-90 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:bottom-0 after:right-0 after:rotate-180" />
         <span className="button__inner">{children}</span>
       </Comp>
     );
