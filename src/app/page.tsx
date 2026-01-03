@@ -29,10 +29,10 @@ export default function HomePage() {
       <div className="relative z-10 flex flex-col items-center gap-10 w-full">
         <Image
           src="/images/branding/logo.png"
-          width={500}
-          height={500}
+          width={800}
+          height={800}
           alt="Picture of the author"
-          className="pt-32 pb-12"
+          className="pt-40 pb-12"
         />
 
         <div className="flex flex-col items-center justify-center gap-8">
