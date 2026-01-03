@@ -3,6 +3,7 @@ import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { AuthProvider, ThemeProvider } from "./providers";
 import Navbar from "./components/Navbar";
+import RunefallNavbar from "./components/RunefallNavbar";
 
 const nunito_Sans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             {/* <Navbar /> */}
+            <RunefallNavbar />
             <main className="mx-auto">{children}</main>
           </AuthProvider>
         </ThemeProvider>
