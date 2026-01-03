@@ -73,7 +73,7 @@ export default async function ProductsPage() {
                   <div className="mt-auto">
                     <div className="mb-4">
                       <span className="text-2xl font-bold text-gray-900">
-                        {currency} ${amount.toFixed(2)}
+                        {currency} {amount.toFixed(2)}
                       </span>
                       {price?.recurring && (
                         <span className="text-gray-600 text-sm ml-2">
