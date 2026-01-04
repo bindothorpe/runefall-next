@@ -23,14 +23,14 @@ export default function HomePage() {
   return (
     <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.jpg')] bg-cover bg-center bg-no-repeat min-h-screen">
       <div
-        className="absolute inset-0 bg-gradient-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
+        className="absolute inset-0 bg-linear-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
         style={{ height: "50vh" }}
       ></div>
       <div className="relative z-10 flex flex-col items-center gap-10 w-full">
         <Image
           src="/images/branding/logo.png"
           width={800}
-          height={800}
+          height={295}
           alt="Picture of the author"
           className="pt-40 pb-12"
         />

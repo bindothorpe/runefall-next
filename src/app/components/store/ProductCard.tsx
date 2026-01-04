@@ -25,7 +25,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
   return (
     <Card
       className={cn(
-        "aspect-3/4 gap-0 justify-between bg-[#322059] border-0 relative rounded-xs inset-ring-2 inset-ring-border shadow-[0_0_20px_rgba(0,0,0,0.8) scale-100 hover:scale-[102%] transition-all",
+        "aspect-3/4 gap-0 justify-between bg-[#322059] border-0 relative rounded-xs inset-ring-2 inset-ring-border shadow-[0_0_20px_rgba(0,0,0,0.8)] scale-100 hover:scale-[102%] transition-all overflow-visible",
         className
       )}
     >
