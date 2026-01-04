@@ -82,6 +82,7 @@ export const UserScalarFieldEnum = {
   emailVerified: 'emailVerified',
   image: 'image',
   stripeCustomerId: 'stripeCustomerId',
+  hytaleUsername: 'hytaleUsername',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -153,6 +154,7 @@ export const PurchaseScalarFieldEnum = {
   priceId: 'priceId',
   amount: 'amount',
   currency: 'currency',
+  hytaleUsername: 'hytaleUsername',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

@@ -15,6 +15,7 @@ model User {
   emailVerified    DateTime?
   image            String?
   stripeCustomerId String?         @unique
+  hytaleUsername   String?
   accounts         Account[]
   sessions         Session[]
   purchases        Purchase[]
@@ -96,6 +97,9 @@ model Purchase {
   priceId     String
   amount      Int
   currency    String
+
+  // Hytale username at time of purchase
+  hytaleUsername String?
 
   // Timestamps
   createdAt DateTime @default(now())

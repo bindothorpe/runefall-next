@@ -3,6 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function CheckoutPage() {
   const { data: session, status } = useSession();
@@ -83,17 +85,37 @@ export default function CheckoutPage() {
   }
 
   if (error) {
+    const isHytaleError = error.includes("Hytale account");
+
     return (
       <div className="flex flex-col items-center justify-center min-h-[70vh]">
-        <div className="max-w-md mx-auto p-6 bg-red-50 border border-red-200 rounded-lg">
-          <h1 className="text-2xl font-bold text-red-800 mb-4">Error</h1>
-          <p className="text-red-600 mb-4">{error}</p>
-          <button
-            onClick={() => router.push("/products")}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Back to Products
-          </button>
+        <div className="max-w-md mx-auto p-6 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <h1 className="text-2xl font-bold text-red-800 dark:text-red-400 mb-4">
+            {isHytaleError ? "Hytale Account Required" : "Error"}
+          </h1>
+          <p className="text-red-600 dark:text-red-300 mb-6">{error}</p>
+          <div className="flex gap-3">
+            {isHytaleError ? (
+              <>
+                <Link href="/account" className="flex-1">
+                  <Button variant="hytale" className="w-full">
+                    Go to Account
+                  </Button>
+                </Link>
+                <Link href="/store" className="flex-1">
+                  <Button variant="outline" className="w-full">
+                    Back to Store
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link href="/store" className="w-full">
+                <Button variant="hytale" className="w-full">
+                  Back to Store
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -101,11 +123,11 @@ export default function CheckoutPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh]">
-      <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <div className="max-w-md mx-auto p-6 bg-white dark:bg-card rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-center mb-4">
           Processing Checkout
         </h1>
-        <p className="text-center text-gray-600 mb-4">
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-4">
           Please wait while we redirect you to Stripe Checkout...
         </p>
         <div className="flex justify-center">

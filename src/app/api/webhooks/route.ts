@@ -39,9 +39,10 @@ export async function POST(req: Request) {
 
           // Only process if payment was successful
           if (session.payment_status === "paid") {
-            // Get the user ID from metadata
+            // Get the user ID and Hytale username from metadata
             const userId = session.metadata?.userId;
             const priceId = session.metadata?.priceId;
+            const hytaleUsername = session.metadata?.hytaleUsername;
 
             if (!userId || !priceId) {
               console.error("Missing userId or priceId in session metadata");
@@ -77,10 +78,11 @@ export async function POST(req: Request) {
                 priceId: price.id,
                 amount: session.amount_total || 0,
                 currency: session.currency || "usd",
+                hytaleUsername: hytaleUsername || null,
               },
             });
 
-            console.log(`✅ Purchase recorded for user ${userId}`);
+            console.log(`✅ Purchase recorded for user ${userId} (Hytale: ${hytaleUsername || 'N/A'})`);
           }
           break;
 

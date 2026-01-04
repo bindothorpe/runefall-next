@@ -50,6 +50,14 @@ export async function POST(req: Request) {
       );
     }
 
+    // Check if user has a Hytale username
+    if (!user.hytaleUsername) {
+      return NextResponse.json(
+        { error: "Please link your Hytale account before making a purchase. Go to your Account page to add your Hytale username." },
+        { status: 400 }
+      );
+    }
+
     // Create or retrieve Stripe customer
     let stripeCustomerId = user.stripeCustomerId;
 
@@ -60,6 +68,7 @@ export async function POST(req: Request) {
         name: session.user.name || undefined,
         metadata: {
           userId: user.id,
+          hytaleUsername: user.hytaleUsername,
         },
       });
 
@@ -69,6 +78,14 @@ export async function POST(req: Request) {
       await prisma.user.update({
         where: { id: user.id },
         data: { stripeCustomerId },
+      });
+    } else {
+      // Update existing customer metadata with latest Hytale username
+      await stripe.customers.update(stripeCustomerId, {
+        metadata: {
+          userId: user.id,
+          hytaleUsername: user.hytaleUsername,
+        },
       });
     }
 
@@ -86,10 +103,11 @@ export async function POST(req: Request) {
       ],
       mode: "payment",
       success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/products`,
+      cancel_url: `${origin}/store`,
       metadata: {
         userId: user.id,
         priceId: priceId,
+        hytaleUsername: user.hytaleUsername,
       },
     });
 
