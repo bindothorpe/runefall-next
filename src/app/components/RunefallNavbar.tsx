@@ -123,10 +123,10 @@ export default function RunefallNavbar() {
 
             {/* Right side - Actions */}
             <div className="flex items-center gap-6 px-1.5">
-              <Link href={"/dashboard"}>
+              <Link href={"/account"}>
                 <Button
                   variant="hytale-link"
-                  data-current={pathname === "/dashboard" ? "true" : undefined}
+                  data-current={pathname === "/account" ? "true" : undefined}
                 >
                   ACCOUNT
                 </Button>
@@ -212,7 +212,7 @@ export default function RunefallNavbar() {
                 </Link>
                 <CustomSeparator />
 
-                <Link href={"/dashboard"} onClick={handleNavClick}>
+                <Link href={"/account"} onClick={handleNavClick}>
                   <Button
                     variant="hytale-link"
                     className="w-full justify-center"
