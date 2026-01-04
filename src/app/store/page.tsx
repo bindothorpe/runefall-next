@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
 import ProductCard from "../components/store/ProductCard";
 import { lexend } from "../fonts";
-import StoreSeparator from "../components/store/StoreSeparator";
+import CustomSeparator from "../components/CustomSeparator";
 
 export default async function ProductsPage() {
   const products = await stripe.products.list({
@@ -22,8 +22,12 @@ export default async function ProductsPage() {
   });
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-12 max-w-5xl">
+    <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen">
+      {/* <div
+        className="-z-1 absolute inset-0 bg-gradient-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
+        style={{ height: "50vh" }}
+      ></div> */}
+      <div className="container mx-auto px-4 py-12 max-w-5xl pt-32">
         <h1
           className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-2 ${lexend.className}`}
         >
@@ -31,14 +35,14 @@ export default async function ProductsPage() {
         </h1>
         <p className="text-center text-xl">Purchase in game Runes or Ranks</p>
 
-        <StoreSeparator squareSize={16} lineWidth={2} />
+        <CustomSeparator squareSize={16} lineWidth={2} className="my-12" />
 
         <h1
           className={`text-4xl font-semibold text-center mb-8 ${lexend.className}`}
         >
           Runes
         </h1>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {sortedProducts.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
@@ -50,7 +54,7 @@ export default async function ProductsPage() {
           </div>
         )}
 
-        <StoreSeparator squareSize={16} lineWidth={2} />
+        <CustomSeparator squareSize={16} lineWidth={2} className="my-12" />
 
         <h1
           className={`text-4xl font-semibold text-center mb-8 ${lexend.className}`}
@@ -62,7 +66,7 @@ export default async function ProductsPage() {
         >
           COMING SOON
         </p>
-        <StoreSeparator squareSize={16} lineWidth={2} />
+        <CustomSeparator squareSize={16} lineWidth={2} className="my-12" />
       </div>
     </div>
   );

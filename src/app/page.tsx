@@ -36,7 +36,9 @@ export default function HomePage() {
         />
 
         <div className="flex flex-col items-center justify-center gap-8">
-          <h1 className={`text-3xl font-bold ${lexend.className}`}>
+          <h1
+            className={`text-3xl font-bold text-center runefall-text-gradient ${lexend.className}`}
+          >
             Test your skills in our competitive games!
           </h1>
           <p className="text-xl font-light text-center">

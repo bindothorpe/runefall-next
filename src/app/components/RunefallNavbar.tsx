@@ -13,7 +13,7 @@ import { Home } from "./icons/Home";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import CustomSeparator from "./CustomSeparator";
 
 export default function RunefallNavbar() {
   var pathname = usePathname();
@@ -174,7 +174,7 @@ export default function RunefallNavbar() {
               }`}
             >
               <nav className="flex flex-col py-4 px-6 gap-2">
-                <Separator className="!h-0.5 bg-linear-to-r from-[#2a194500] via-[#2A1945] to-[#2a194500] mt-4" />
+                <CustomSeparator className="mt-4" />
                 <Link href={"/"} onClick={handleNavClick}>
                   <Button
                     variant="hytale-link"
@@ -210,7 +210,7 @@ export default function RunefallNavbar() {
                     SUPPORT
                   </Button>
                 </Link>
-                <Separator className="!h-0.5 bg-linear-to-r from-[#2a194500] via-[#2A1945] to-[#2a194500]" />
+                <CustomSeparator />
 
                 <Link href={"/dashboard"} onClick={handleNavClick}>
                   <Button
