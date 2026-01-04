@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root, ::selection {
+:root > ::selection {
 	background: rgba(153, 54, 227, 0.3);
 }
 
