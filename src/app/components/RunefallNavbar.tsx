@@ -92,11 +92,11 @@ export default function RunefallNavbar() {
                   {/* Seperator */}
                   <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
-                    <Link href={"/products"}>
+                    <Link href={"/store"}>
                       <Button
                         variant="hytale-link"
                         data-current={
-                          pathname === "/products" ? "true" : undefined
+                          pathname === "/store" ? "true" : undefined
                         }
                       >
                         STORE

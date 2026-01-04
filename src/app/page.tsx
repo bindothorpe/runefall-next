@@ -21,7 +21,7 @@ export default function HomePage() {
     }
   }, [status, callbackUrl, router]);
   return (
-    <div className="relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.jpg')] bg-cover bg-center bg-no-repeat min-h-screen">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.jpg')] bg-cover bg-center bg-no-repeat min-h-screen">
       <div
         className="absolute inset-0 bg-gradient-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
         style={{ height: "50vh" }}

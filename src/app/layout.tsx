@@ -30,7 +30,7 @@ export default function RootLayout({
           <AuthProvider>
             {/* <Navbar /> */}
             <RunefallNavbar />
-            <main className="mx-auto">{children}</main>
+            <main className="mx-auto pt-24">{children}</main>
           </AuthProvider>
         </ThemeProvider>
       </body>
