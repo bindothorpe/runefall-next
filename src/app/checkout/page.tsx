@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { lexend } from "../fonts";
+import CustomSeparator from "../components/CustomSeparator";
 
 export default function CheckoutPage() {
   const { data: session, status } = useSession();
@@ -235,7 +236,7 @@ export default function CheckoutPage() {
             Complete Your Purchase
           </h1>
 
-          <div className="mb-6">
+          <div>
             <Label className="text-base font-semibold mb-4 block">
               Make this purchase for:
             </Label>
@@ -312,7 +313,7 @@ export default function CheckoutPage() {
             </RadioGroup>
           </div>
         </CardContent>
-
+        <CustomSeparator className="py-8" />
         <CardFooter className="flex flex-col">
           <Button
             onClick={handleCheckout}
