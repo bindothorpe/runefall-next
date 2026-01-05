@@ -221,116 +221,113 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="container mx-auto px-6 max-w-xl py-12">
-      <h1
-        className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-12 ${lexend.className}`}
-      >
-        PURCHASE ACCOUNT
-      </h1>
-      <Card
-        variant={"hytale"}
-        className="max-w-md mx-auto bg-white dark:bg-card rounded-lg shadow-lg gap-0"
-      >
-        <CardContent>
-          <h1 className="text-2xl font-bold text-center mb-6">
-            Complete Your Purchase
-          </h1>
-
-          <div>
-            <Label className="text-base font-semibold mb-4 block">
-              Make this purchase for:
-            </Label>
-
-            <RadioGroup
-              value={purchaseFor}
-              onValueChange={(value) => {
-                setPurchaseFor(value as "myself" | "friend");
-                if (value === "myself") {
-                  setFriendUsername("");
-                  setUsernameError(null);
-                }
-              }}
-              className="space-y-3"
-            >
-              {/* Myself option */}
-              <label
-                htmlFor={`${id}-myself`}
-                className={`relative flex items-center gap-3 rounded-lg border px-4 py-4 cursor-pointer transition-all outline-none focus-within:ring-2 focus-within:ring-ring/50 ${
-                  purchaseFor === "myself"
-                    ? "border-primary bg-primary/5"
-                    : "border-input"
-                }`}
+    <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen">
+      <div className="container mx-auto px-6 max-w-xl py-12 pt-32">
+        <h1
+          className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-12 ${lexend.className}`}
+        >
+          PURCHASE ACCOUNT
+        </h1>
+        <Card
+          variant={"hytale"}
+          className="max-w-md mx-auto gap-0 shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+        >
+          <CardContent>
+            <h1 className="text-2xl font-bold text-center mb-6">
+              Complete Your Purchase
+            </h1>
+            <div>
+              <Label className="text-base font-semibold mb-4 block">
+                Make this purchase for:
+              </Label>
+              <RadioGroup
+                value={purchaseFor}
+                onValueChange={(value) => {
+                  setPurchaseFor(value as "myself" | "friend");
+                  if (value === "myself") {
+                    setFriendUsername("");
+                    setUsernameError(null);
+                  }
+                }}
+                className="space-y-3"
               >
-                <RadioGroupItem
-                  id={`${id}-myself`}
-                  value="myself"
-                  aria-label="Purchase for myself"
-                />
-                <p className="text-sm font-medium flex-1">
-                  Myself {user?.hytaleUsername && `(${user.hytaleUsername})`}
-                </p>
-              </label>
-
-              {/* Friend option */}
-              <div
-                className={`relative rounded-lg border transition-all outline-none focus-within:ring-2 focus-within:ring-ring/50 ${
-                  purchaseFor === "friend"
-                    ? "border-primary bg-primary/5 pb-4"
-                    : "border-input"
-                }`}
-              >
+                {/* Myself option */}
                 <label
-                  htmlFor={`${id}-friend`}
-                  className="flex items-center gap-3 px-4 py-4 cursor-pointer"
+                  htmlFor={`${id}-myself`}
+                  className={`relative flex items-center gap-3 rounded-lg border px-4 py-4 cursor-pointer transition-all outline-none focus-within:ring-2 focus-within:ring-ring/50 ${
+                    purchaseFor === "myself"
+                      ? "border-primary bg-primary/5"
+                      : "border-input"
+                  }`}
                 >
                   <RadioGroupItem
-                    id={`${id}-friend`}
-                    value="friend"
-                    aria-label="Purchase for a friend"
+                    id={`${id}-myself`}
+                    value="myself"
+                    aria-label="Purchase for myself"
                   />
-                  <p className="text-sm font-medium">For a friend</p>
+                  <p className="text-sm font-medium flex-1">
+                    Myself {user?.hytaleUsername && `(${user.hytaleUsername})`}
+                  </p>
                 </label>
-
-                {purchaseFor === "friend" && (
-                  <div className="px-4 mt-1">
-                    <Input
-                      type="text"
-                      placeholder="Enter Hytale username"
-                      value={friendUsername}
-                      onChange={(e) =>
-                        handleFriendUsernameChange(e.target.value)
-                      }
-                      className={usernameError ? "border-red-500" : ""}
+                {/* Friend option */}
+                <div
+                  className={`relative rounded-lg border transition-all outline-none focus-within:ring-2 focus-within:ring-ring/50 ${
+                    purchaseFor === "friend"
+                      ? "border-primary bg-primary/5 pb-4"
+                      : "border-input"
+                  }`}
+                >
+                  <label
+                    htmlFor={`${id}-friend`}
+                    className="flex items-center gap-3 px-4 py-4 cursor-pointer"
+                  >
+                    <RadioGroupItem
+                      id={`${id}-friend`}
+                      value="friend"
+                      aria-label="Purchase for a friend"
                     />
-                    {usernameError && (
-                      <p className="text-sm text-red-600 dark:text-red-400 mt-2">
-                        {usernameError}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </div>
-            </RadioGroup>
-          </div>
-        </CardContent>
-        <CustomSeparator className="py-8" />
-        <CardFooter className="flex flex-col">
-          <Button
-            onClick={handleCheckout}
-            disabled={isCheckoutDisabled() || loading}
-            className="w-full"
-            variant="hytale"
-          >
-            Continue to Checkout
-          </Button>
-
-          <Link href="/store" className="w-full mt-4">
-            <Button variant="outline" className="w-full">
-              Back to Store
+                    <p className="text-sm font-medium">For a friend</p>
+                  </label>
+                  {purchaseFor === "friend" && (
+                    <div className="px-4 mt-1">
+                      <Input
+                        type="text"
+                        placeholder="Enter Hytale username"
+                        value={friendUsername}
+                        onChange={(e) =>
+                          handleFriendUsernameChange(e.target.value)
+                        }
+                        className={usernameError ? "border-red-500" : ""}
+                      />
+                      {usernameError && (
+                        <p className="text-sm text-red-600 dark:text-red-400 mt-2">
+                          {usernameError}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </RadioGroup>
+            </div>
+          </CardContent>
+          <CustomSeparator className="py-8" />
+          <CardFooter className="flex flex-col">
+            <Button
+              onClick={handleCheckout}
+              disabled={isCheckoutDisabled() || loading}
+              className="w-full"
+              variant="hytale"
+            >
+              Continue to Checkout
             </Button>
-          </Link>
-        </CardFooter>
-      </Card>
+            <Link href="/store" className="w-full mt-4">
+              <Button variant="outline" className="w-full">
+                Back to Store
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
