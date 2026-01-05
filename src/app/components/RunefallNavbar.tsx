@@ -14,13 +14,13 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import CustomSeparator from "./CustomSeparator";
+import { useSession } from "next-auth/react";
 
 export default function RunefallNavbar() {
+  const { data: session } = useSession();
   var pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
-
-  console.log(`Pathname: ${pathname}`);
 
   React.useEffect(() => {
     if (pathname === "/") {
@@ -125,12 +125,12 @@ export default function RunefallNavbar() {
 
             {/* Right side - Actions */}
             <div className="flex items-center gap-6 px-1.5">
-              <Link href={"/account"}>
+              <Link href={session ? "/account" : "/signin"}>
                 <Button
                   variant="hytale-link"
                   data-current={pathname === "/account" ? "true" : undefined}
                 >
-                  ACCOUNT
+                  {session ? "ACCOUNT" : "SIGN IN"}
                 </Button>
               </Link>
               <Button variant={"hytale"} size={"sm"} className="h-8">
@@ -213,13 +213,15 @@ export default function RunefallNavbar() {
                   </Button>
                 </Link>
                 <CustomSeparator />
-
-                <Link href={"/account"} onClick={handleNavClick}>
+                <Link
+                  href={session ? "/account" : "/signin"}
+                  onClick={handleNavClick}
+                >
                   <Button
                     variant="hytale-link"
                     className="w-full justify-center"
                   >
-                    ACCOUNT
+                    {session ? "ACCOUNT" : "SIGN IN"}
                   </Button>
                 </Link>
               </nav>

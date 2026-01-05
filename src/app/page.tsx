@@ -7,9 +7,11 @@ import { useEffect } from "react";
 import Image from "next/image";
 import CtaContainer from "./components/CtaContainer";
 import { lexend } from "@/app/fonts";
+import { Card } from "@/components/ui/card";
+import CustomSeparator from "./components/CustomSeparator";
 
 export default function HomePage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
@@ -21,7 +23,8 @@ export default function HomePage() {
     }
   }, [status, callbackUrl, router]);
   return (
-    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.jpg')] bg-cover bg-center bg-no-repeat min-h-screen">
+    // <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen"></div>
+    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen">
       <div
         className="absolute inset-0 bg-linear-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
         style={{ height: "50vh" }}
@@ -51,31 +54,73 @@ export default function HomePage() {
             PLAY NOW
           </Button>
         </CtaContainer>
-        {status === "loading" ? (
-          <p className="text-lg">Loading...</p>
-        ) : session ? (
-          <div className="text-center">
-            <p className="text-xl mb-4">
-              You are signed in as {session.user?.name}
-            </p>
-            <p className="text-lg">
-              Visit your{" "}
-              <a href="/dashboard" className="text-blue-500 underline">
-                Dashboard
-              </a>
-            </p>
-          </div>
-        ) : (
-          <div className="text-center">
-            <p className="text-xl mb-6">
-              Please sign in using the button in the top right corner
-            </p>
-            <p className="bg-yellow-100 p-4 rounded-lg border border-yellow-400">
-              This app demonstrates how to build a login system with Next.js and
-              NextAuth.js
-            </p>
-          </div>
-        )}
+      </div>
+      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 px-4 md:px-8 items-end">
+        <div className="flex flex-col flex-1 gap-8">
+          <h1
+            className={`text-4xl font-bold text-center runefall-text-highlight-gradient ${lexend.className}`}
+          >
+            What is Runefall
+          </h1>
+          <p className="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
+            ducimus accusamus perferendis dolores.
+          </p>
+          <p className="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
+            ducimus accusamus perferendis dolores.
+          </p>
+          <p className="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
+            ducimus accusamus perferendis dolores.
+          </p>
+        </div>
+        <div className="flex-1">
+          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+        </div>
+      </div>
+
+      <CustomSeparator className="my-12" />
+
+      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 px-4 md:px-8 items-end">
+        <h1
+          className={`text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}
+        >
+          What makes us special
+        </h1>
+        <div className="flex-1">
+          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+        </div>
+        <div className="flex-1">
+          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+        </div>
+        <div className="flex-1">
+          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+        </div>
+        <div className="flex-1">
+          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+        </div>
+      </div>
+
+      <CustomSeparator className="my-12" />
+
+      <div className="flex flex-col gap-20 mb-48 px-4 md:px-8 items-center w-full">
+        <h1
+          className={`max-w-6xl text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}
+        >
+          Join our server
+        </h1>
+
+        <div className="w-full">
+          <CtaContainer>
+            <Button variant={"hytale"} className="w-64" size={"hytale"}>
+              PLAY NOW
+            </Button>
+          </CtaContainer>
+        </div>
       </div>
     </div>
   );

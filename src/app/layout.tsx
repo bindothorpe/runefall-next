@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider, ThemeProvider } from "./providers";
 import Navbar from "./components/Navbar";
 import RunefallNavbar from "./components/RunefallNavbar";
+import Footer from "./components/Footer";
 
 const nunito_Sans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
             {/* <Navbar /> */}
             <RunefallNavbar />
             <main className="mx-auto pt-24">{children}</main>
+            <Footer />
           </AuthProvider>
         </ThemeProvider>
       </body>

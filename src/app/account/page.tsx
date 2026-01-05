@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { lexend } from "../fonts";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import CustomSeparator from "../components/CustomSeparator";
 
 export default function AccountPage() {
-  const { data: session, update } = useSession({ required: true });
+  const { data: session } = useSession({ required: true });
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState<{
@@ -121,9 +121,9 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container mx-auto px-6 max-w-xl py-12">
+    <div className="container mx-auto px-6 max-w-xl py-12 flex flex-col gap-6">
       <h1
-        className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-12 ${lexend.className}`}
+        className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-6 ${lexend.className}`}
       >
         ACCOUNT
       </h1>
@@ -217,6 +217,13 @@ export default function AccountPage() {
           )}
         </CardFooter>
       </Card>
+      <Button
+        variant={"outline"}
+        className="w-fit self-center"
+        onClick={() => signOut()}
+      >
+        Sign out
+      </Button>
     </div>
   );
 }

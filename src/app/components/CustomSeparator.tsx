@@ -4,11 +4,13 @@ export default function CustomSeparator({
   squareSize = 12,
   lineWidth = 2,
   gap = 0,
+  background = "transparent",
   className = "",
 }: {
   squareSize?: number;
   lineWidth?: number;
   gap?: number;
+  background?: string;
   className?: string;
 }) {
   return (
@@ -18,7 +20,7 @@ export default function CustomSeparator({
         style={{ height: `${lineWidth}px` }}
       />
       <div
-        className={`mx-${gap} border-[#4D475F] bg-transparent`}
+        className={`mx-${gap} border-[#4D475F] bg-${background}`}
         style={{
           width: `${squareSize}px`,
           height: `${squareSize}px`,

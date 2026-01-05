@@ -56,6 +56,7 @@
   --shadow-2xl: 0 1px 3px 0px oklch(0.00 0 0 / 0.25);
 
   --text-gradient: linear-gradient(180deg,rgba(245, 251, 255, 1) 0%, rgba(212, 191, 255, 1) 100%);
+  --text-highlight-gradient: linear-gradient(180deg,rgba(216, 98, 237, 1) 0%, rgba(175, 50, 197, 1) 100%);
   
 }
 
@@ -156,6 +157,15 @@
 
 .runefall-text-gradient {
   background: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+
+.runefall-text-highlight-gradient {
+  background: var(--text-highlight-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
