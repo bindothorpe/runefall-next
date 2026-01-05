@@ -121,7 +121,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container mx-auto px-6 max-w-xl py-12 flex flex-col gap-6">
+    <div className="container mx-auto px-6 max-w-xl pt-12 -mb-20 flex flex-col gap-6 min-h-screen">
       <h1
         className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-6 ${lexend.className}`}
       >
