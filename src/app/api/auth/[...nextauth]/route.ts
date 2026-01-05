@@ -1,8 +1,14 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthOptions } from "next-auth";
+import DiscordProvider from "next-auth/providers/discord";
+import EmailProvider, {
+  SendVerificationRequestParams,
+} from "next-auth/providers/email";
+import type { NextAuthOptions, Theme } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/prisma";
+import { createTransport } from "nodemailer";
+import { sendVerificationRequest } from "@/utils/send-verification-request";
 
 //TODO: Use Prisma for database objects
 // Add custom User type that includes id
@@ -25,11 +31,23 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID as string,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+    }),
+
+    EmailProvider({
+      server: '',
+      from: process.env.EMAIL_FROM as string,
+      sendVerificationRequest: sendVerificationRequest,
+    }),
   ],
   pages: {
     signIn: "/signin",
     error: "/signin",
     signOut: "/",
+    verifyRequest: "/auth/verify-request",
   },
   debug: process.env.NODE_ENV === "development",
   callbacks: {

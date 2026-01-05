@@ -2,47 +2,132 @@
 
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { lexend } from "../fonts";
+import CustomSeparator from "../components/CustomSeparator";
 
 export default function SignInPage() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleEmailSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setIsLoading(true);
+      await signIn("email", { email, callbackUrl });
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
-      <div className="space-y-4">
-        <button
-          onClick={() => signIn("google", { callbackUrl })}
-          className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-6 py-3 text-gray-700 hover:bg-gray-50 transition"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
-              <path
-                fill="#4285F4"
-                d="M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"
+    <div className="container mx-auto px-6 max-w-xl pt-12 -mb-20 flex flex-col gap-6 min-h-screen">
+      <h1
+        className={`text-5xl font-bold text-center mb-6 ${lexend.className} runefall-text-gradient`}
+      >
+        SIGN IN
+      </h1>
+      <Card
+        variant="hytale"
+        className="gap-0 justify-between bg-[#322059] shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+      >
+        <CardContent>
+          <div className="flex flex-col gap-4">
+            <form onSubmit={handleEmailSignIn} className="flex flex-col gap-3">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={isLoading}
+                className="w-full"
               />
-              <path
-                fill="#34A853"
-                d="M -14.754 63.239 C -11.514 63.239 -8.804 62.159 -6.824 60.329 L -10.684 57.329 C -11.764 58.049 -13.134 58.489 -14.754 58.489 C -17.884 58.489 -20.534 56.379 -21.484 53.529 L -25.464 53.529 L -25.464 56.619 C -23.494 60.539 -19.444 63.239 -14.754 63.239 Z"
-              />
-              <path
-                fill="#FBBC05"
-                d="M -21.484 53.529 C -21.734 52.809 -21.864 52.039 -21.864 51.239 C -21.864 50.439 -21.724 49.669 -21.484 48.949 L -21.484 45.859 L -25.464 45.859 C -26.284 47.479 -26.754 49.299 -26.754 51.239 C -26.754 53.179 -26.284 54.999 -25.464 56.619 L -21.484 53.529 Z"
-              />
-              <path
-                fill="#EA4335"
-                d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"
-              />
-            </g>
-          </svg>
-          Sign in with Google
-        </button>
-      </div>
+              <Button
+                type="submit"
+                variant="outline"
+                className="w-full"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending link..." : "Sign in with Email"}
+              </Button>
+            </form>
+
+            {/* <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-[#322059] px-2 text-muted-foreground">
+                  Or continue with
+                </span>
+              </div>
+            </div> */}
+            <CustomSeparator lineWidth={1} className="my-2">
+              <span className="text-xs mx-2 uppercase text-muted-foreground">
+                Or continue with
+              </span>
+            </CustomSeparator>
+
+            <Button
+              onClick={() => signIn("google", { callbackUrl })}
+              variant="outline"
+              className="w-full flex items-center justify-center gap-3"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="100"
+                height="100"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#ffffff"
+                  d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+                ></path>
+                <path
+                  fill="#ffffff"
+                  d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+                ></path>
+                <path
+                  fill="#ffffff"
+                  d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+                ></path>
+                <path
+                  fill="#ffffff"
+                  d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+                ></path>
+              </svg>
+              Sign in with Google
+            </Button>
+            <Button
+              onClick={() => signIn("discord", { callbackUrl })}
+              variant="outline"
+              className="w-full flex items-center justify-center gap-3"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="100"
+                height="100"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#ffffff"
+                  d="M40,12c0,0-4.585-3.588-10-4l-0.488,0.976C34.408,10.174,36.654,11.891,39,14c-4.045-2.065-8.039-4-15-4s-10.955,1.935-15,4c2.346-2.109,5.018-4.015,9.488-5.024L18,8c-5.681,0.537-10,4-10,4s-5.121,7.425-6,22c5.162,5.953,13,6,13,6l1.639-2.185C13.857,36.848,10.715,35.121,8,32c3.238,2.45,8.125,5,16,5s12.762-2.55,16-5c-2.715,3.121-5.857,4.848-8.639,5.815L33,40c0,0,7.838-0.047,13-6C45.121,19.425,40,12,40,12z M17.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C21,28.209,19.433,30,17.5,30z M30.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C34,28.209,32.433,30,30.5,30z"
+                ></path>
+              </svg>
+              Sign in with Discord
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
