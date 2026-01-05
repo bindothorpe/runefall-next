@@ -96,7 +96,9 @@ export default function RunefallNavbar() {
                       <Button
                         variant="hytale-link"
                         data-current={
-                          pathname === "/store" ? "true" : undefined
+                          ["/store", "/checkout"].includes(pathname)
+                            ? "true"
+                            : undefined
                         }
                       >
                         STORE
