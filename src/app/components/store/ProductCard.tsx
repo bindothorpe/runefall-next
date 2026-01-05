@@ -24,13 +24,12 @@ export default function ProductCard({ product, className }: ProductCardProps) {
   const currency = price?.currency?.toUpperCase() || "USD";
   return (
     <Card
+      variant={"hytale"}
       className={cn(
-        "aspect-3/4 gap-0 justify-between bg-[#322059] border-0 relative rounded-xs inset-ring-2 inset-ring-border shadow-[0_0_20px_rgba(0,0,0,0.8)] scale-100 hover:scale-[102%] transition-all overflow-visible",
+        "aspect-3/4 gap-0 justify-between bg-[#322059] shadow-[0_0_20px_rgba(0,0,0,0.8)] scale-100 hover:scale-[102%] transition-all overflow-visible",
         className
       )}
     >
-      <span className="absolute inset-0 pointer-events-none before:content-[''] before:bg-no-repeat before:block before:absolute before:z-80 before:w-[14.5px] before:h-[14.5px] before:bg-[url('/images/components/container-corner.png')] before:bg-size-[14.5px] before:top-0 before:left-0 before:-rotate-180 after:bg-no-repeat after:content-[''] after:block after:absolute after:z-80 after:w-[14.5px] after:h-[14.5px] after:bg-[url('/images/components/container-corner.png')] after:bg-size-[14.5px] after:top-0 after:right-0 after:-rotate-90" />
-      <span className="absolute inset-0 pointer-events-none before:content-[''] before:bg-no-repeat before:block before:absolute before:z-80 before:w-[14.5px] before:h-[14.5px] before:bg-[url('/images/components/container-corner.png')] before:bg-size-[14.5px] before:bottom-0 before:left-0 before:rotate-90 after:bg-no-repeat after:content-[''] after:block after:absolute after:z-80 after:w-[14.5px] after:h-[14.5px] after:bg-[url('/images/components/container-corner.png')] after:bg-size-[14.5px] after:bottom-0 after:right-0 -after:rotate-180" />
       <CardContent className="w-full">
         {/* Product Image */}
         <div className="relative w-full aspect-square">

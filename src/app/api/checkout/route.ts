@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { priceId } = await req.json();
+    const { priceId, recipientUsername } = await req.json();
 
     if (!priceId) {
       return NextResponse.json(
@@ -58,6 +58,9 @@ export async function POST(req: Request) {
       );
     }
 
+    // Determine the recipient username (for gift or self)
+    const hytaleUsername = recipientUsername || user.hytaleUsername;
+
     // Create or retrieve Stripe customer
     let stripeCustomerId = user.stripeCustomerId;
 
@@ -68,7 +71,7 @@ export async function POST(req: Request) {
         name: session.user.name || undefined,
         metadata: {
           userId: user.id,
-          hytaleUsername: user.hytaleUsername,
+          hytaleUsername: hytaleUsername,
         },
       });
 
@@ -80,11 +83,11 @@ export async function POST(req: Request) {
         data: { stripeCustomerId },
       });
     } else {
-      // Update existing customer metadata with latest Hytale username
+      // Update existing customer metadata with recipient username
       await stripe.customers.update(stripeCustomerId, {
         metadata: {
           userId: user.id,
-          hytaleUsername: user.hytaleUsername,
+          hytaleUsername: hytaleUsername,
         },
       });
     }
@@ -107,7 +110,7 @@ export async function POST(req: Request) {
       metadata: {
         userId: user.id,
         priceId: priceId,
-        hytaleUsername: user.hytaleUsername,
+        hytaleUsername: hytaleUsername,
       },
     });
 
