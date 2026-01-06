@@ -11,15 +11,17 @@ import { Card } from "@/components/ui/card";
 import CustomSeparator from "./components/CustomSeparator";
 
 export default function HomePage() {
-  <Suspense
-    fallback={
-      <div className="flex flex-col items-center justify-center min-h-[70vh]">
-        <p className="text-lg">Loading...</p>
-      </div>
-    }
-  >
-    <HomePageComponent />
-  </Suspense>;
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center min-h-[70vh]">
+          <p className="text-lg">Loading...</p>
+        </div>
+      }
+    >
+      <HomePageComponent />
+    </Suspense>
+  );
 }
 
 export function HomePageComponent() {

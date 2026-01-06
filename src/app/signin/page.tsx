@@ -10,15 +10,17 @@ import { lexend } from "../fonts";
 import CustomSeparator from "../components/CustomSeparator";
 
 export default function SignInPage() {
-  <Suspense
-    fallback={
-      <div className="flex flex-col items-center justify-center min-h-[70vh]">
-        <p className="text-lg">Loading...</p>
-      </div>
-    }
-  >
-    <SignInPageComponent />
-  </Suspense>;
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center min-h-[70vh]">
+          <p className="text-lg">Loading...</p>
+        </div>
+      }
+    >
+      <SignInPageComponent />
+    </Suspense>
+  );
 }
 export function SignInPageComponent() {
   const searchParams = useSearchParams();
