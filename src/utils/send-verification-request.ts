@@ -217,7 +217,7 @@ function htmlMail(params: { url: string; host: string }) {
                                                                 "
                                                               >
                                                                 <img
-                                                                  alt="Hytale Portal"
+                                                                  alt="Runefall Portal"
                                                                   src="https://cdn.runefall.net/images/a6b0bb85-ab9a-471e-5ccc-a6d0eae20700/public"
                                                                   style="
                                                                     display: block;
@@ -262,7 +262,7 @@ function htmlMail(params: { url: string; host: string }) {
                                                                   "
                                                                   width="100%"
                                                                 /><img
-                                                                  alt="Hytale"
+                                                                  alt="Runefall"
                                                                   src="https://cdn.runefall.net/images/e359af1d-6380-4de3-0ad0-805101b56600/public"
                                                                   style="
                                                                     display: block;
