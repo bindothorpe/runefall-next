@@ -7,7 +7,6 @@ import EmailProvider, {
 import type { NextAuthOptions, Theme } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/prisma";
-import { createTransport } from "nodemailer";
 import { sendVerificationRequest } from "@/utils/send-verification-request";
 
 //TODO: Use Prisma for database objects
