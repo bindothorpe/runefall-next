@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Image from "next/image";
 import CtaContainer from "./components/CtaContainer";
 import { lexend } from "@/app/fonts";
@@ -11,6 +11,18 @@ import { Card } from "@/components/ui/card";
 import CustomSeparator from "./components/CustomSeparator";
 
 export default function HomePage() {
+  <Suspense
+    fallback={
+      <div className="flex flex-col items-center justify-center min-h-[70vh]">
+        <p className="text-lg">Loading...</p>
+      </div>
+    }
+  >
+    <HomePageComponent />
+  </Suspense>;
+}
+
+export function HomePageComponent() {
   const { status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();

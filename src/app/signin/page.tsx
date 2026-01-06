@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,17 @@ import { lexend } from "../fonts";
 import CustomSeparator from "../components/CustomSeparator";
 
 export default function SignInPage() {
+  <Suspense
+    fallback={
+      <div className="flex flex-col items-center justify-center min-h-[70vh]">
+        <p className="text-lg">Loading...</p>
+      </div>
+    }
+  >
+    <SignInPageComponent />
+  </Suspense>;
+}
+export function SignInPageComponent() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [email, setEmail] = useState("");

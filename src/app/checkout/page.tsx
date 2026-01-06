@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useId } from "react";
+import { useEffect, useState, useId, Suspense } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,20 @@ import { lexend } from "../fonts";
 import CustomSeparator from "../components/CustomSeparator";
 
 export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center min-h-[70vh]">
+          <p className="text-lg">Loading...</p>
+        </div>
+      }
+    >
+      <CheckoutPageComponent />
+    </Suspense>
+  );
+}
+
+export function CheckoutPageComponent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();

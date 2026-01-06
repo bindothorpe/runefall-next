@@ -2,9 +2,24 @@
 
 import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function CheckoutSuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center min-h-[70vh]">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-lg">Verifying your purchase...</p>
+        </div>
+      }
+    >
+      <CheckoutSuccessPageComponent />
+    </Suspense>
+  );
+}
+
+export function CheckoutSuccessPageComponent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
