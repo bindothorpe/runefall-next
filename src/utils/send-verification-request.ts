@@ -29,8 +29,9 @@ export async function sendVerificationRequest(
 ) {
   const { identifier, url, provider, theme } = params;
   const { host } = new URL(url);
+  const previewText = "Click to sign in to Runefall - your secure login link is ready"
 
-  const html = htmlMail({ url, host });
+  const html = htmlMail({ url, host, previewText });
   const text = toPlainText(html);
 
   try {
@@ -40,6 +41,20 @@ export async function sendVerificationRequest(
       subject: `Runefall | Sign in to your account`,
       html: html,
       text: text,
+      tags: [
+        {
+          name: "category",
+          value: "authentication",
+        },
+        {
+          name: "type",
+          value: "passwordless_login",
+        },
+        {
+          name: "app",
+          value: "runefall",
+        },
+      ],
     });
 
     // Resend returns { data: { id }, error: null } on success
@@ -62,10 +77,20 @@ export async function sendVerificationRequest(
  *
  * @note We don't add the email address to avoid needing to escape it, if you do, remember to sanitize it!
  */
-function htmlMail(params: { url: string; host: string }) {
-  const { url, host } = params;
+function htmlMail(params: { url: string; host: string; previewText: string; }) {
+  const { url, host, previewText } = params;
 
   return `
+  <!-- Preview Text -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+  ${previewText}
+</div>
+<div style="display: none; max-height: 0px; overflow: hidden;">
+  &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+</div>
+<div style="display: none; max-height: 0px; overflow: hidden;">
+  &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+</div>
 <table
       border="0"
       width="100%"
