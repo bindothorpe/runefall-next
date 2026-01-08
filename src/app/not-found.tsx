@@ -1,10 +1,5 @@
 "use client";
 
-import CustomSeparator from "@/app/components/CustomSeparator";
-import { lexend } from "@/app/fonts";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
