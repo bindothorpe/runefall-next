@@ -163,6 +163,10 @@
   color: transparent;
 }
 
+.bg-runefall-highlight-gradient {
+  background: var(--text-highlight-gradient) !important;
+}
+
 
 .runefall-text-highlight-gradient {
   background: var(--text-highlight-gradient);

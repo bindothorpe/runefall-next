@@ -9,6 +9,14 @@ import CtaContainer from "./components/CtaContainer";
 import { lexend } from "@/app/fonts";
 import { Card } from "@/components/ui/card";
 import CustomSeparator from "./components/CustomSeparator";
+import { GameCardComponent } from "./games/page";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 
 export default function HomePage() {
   return (
@@ -39,10 +47,6 @@ export function HomePageComponent() {
   return (
     // <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen"></div>
     <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
-      <div
-        className="absolute inset-0 bg-linear-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
-        style={{ height: "50vh" }}
-      ></div>
       <div className="relative z-10 flex flex-col items-center gap-10 w-full">
         <Image
           src="/images/branding/logo.png"
@@ -76,24 +80,29 @@ export function HomePageComponent() {
           >
             What is Runefall
           </h1>
-          <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
-            ducimus accusamus perferendis dolores.
-          </p>
-          <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
-            ducimus accusamus perferendis dolores.
-          </p>
-          <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            perspiciatis id laboriosam sequi, blanditiis eveniet dignissimos
-            ducimus accusamus perferendis dolores.
-          </p>
+          <div className="flex flex-col gap-4">
+            <p className="text-center">
+              Runefall is a premium Hytale server dedicated to high-quality
+              competitive minigames and community-driven experiences.
+            </p>
+            <p className="text-center">
+              Jump into intense 5v5 battles in Champions, test your skills in
+              Kit PVP duels, or unwind in Homes where you can build and
+              socialize with friends. Designed for both casual and competitive
+              players, Runefall offers polished, pick-up-and-play gameplay
+              without long commitments.
+            </p>
+            <p className="text-center">
+              Join a growing community where friendships flourish, and your
+              skills shine in the world of Hytale.
+            </p>
+          </div>
         </div>
         <div className="flex-1">
-          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+          <GameCardComponent
+            name={"TRAILER COMING SOON"}
+            inDevelopment={false}
+          />
         </div>
       </div>
 
@@ -106,16 +115,32 @@ export function HomePageComponent() {
           What makes us special
         </h1>
         <div className="flex-1">
-          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+          <GameCardComponent
+            name={"High-Quality Minigames"}
+            description="Polished, competitive gameplay experiences crafted with attention to detail"
+            inDevelopment={false}
+          />
         </div>
         <div className="flex-1">
-          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+          <GameCardComponent
+            name={"Pick Up and Play"}
+            description="Jump in anytime without long commitments or grinds, perfect for quick sessions"
+            inDevelopment={false}
+          />
         </div>
         <div className="flex-1">
-          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+          <GameCardComponent
+            name={"Community First"}
+            description="Build friendships, team up with players, and be part of a welcoming social environment"
+            inDevelopment={false}
+          />
         </div>
         <div className="flex-1">
-          <Card variant={"hytale"} className="w-full aspect-video"></Card>
+          <GameCardComponent
+            name={"Casual to Competitive"}
+            description="Whether you're playing for fun or climbing the ranks, there's a place for everyone"
+            inDevelopment={false}
+          />
         </div>
       </div>
 
@@ -130,9 +155,25 @@ export function HomePageComponent() {
 
         <div className="w-full">
           <CtaContainer>
-            <Button variant={"hytale"} className="w-64" size={"hytale"}>
-              PLAY NOW
-            </Button>
+            <InputGroup className="w-full h-12!">
+              <InputGroupInput
+                placeholder="eu.runefall.net"
+                readOnly
+                className="text-xl!"
+              />
+              <InputGroupAddon align="inline-end">
+                <CopyButton
+                  content="eu.runefall.net"
+                  size="md"
+                  variant={"ghost"}
+                />
+              </InputGroupAddon>
+              <InputGroupAddon align="inline-start">
+                <div className="w-10 flex justify-center text-lg px-1 py-2 text-muted-foreground">
+                  {/* ip */}
+                </div>
+              </InputGroupAddon>
+            </InputGroup>
           </CtaContainer>
         </div>
       </div>
