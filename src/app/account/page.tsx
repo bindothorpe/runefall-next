@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import CustomSeparator from "../components/CustomSeparator";
+import { isFeatureEnabled } from "@/lib/featureFlags";
 
 export default function AccountPage() {
   const { data: session } = useSession({ required: true });
@@ -168,10 +169,12 @@ export default function AccountPage() {
                 <Label className="text-xl text-foreground" htmlFor="username">
                   Hytale Username
                 </Label>
-                <p>
-                  Link your Hytale account so purchases from the store go to the
-                  correct account.
-                </p>
+                {isFeatureEnabled("store") && (
+                  <p>
+                    Link your Hytale account so purchases from the store go to
+                    the correct account.
+                  </p>
+                )}
               </div>
               <Input
                 id="username"

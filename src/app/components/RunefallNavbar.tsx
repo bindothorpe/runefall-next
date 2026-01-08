@@ -15,6 +15,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import CustomSeparator from "./CustomSeparator";
 import { useSession } from "next-auth/react";
+import { isFeatureEnabled } from "@/lib/featureFlags";
 
 export default function RunefallNavbar() {
   const { data: session } = useSession();
@@ -90,21 +91,25 @@ export default function RunefallNavbar() {
                     </Button>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator height="h-10" />
-                  <NavigationMenuItem>
-                    <Link href={"/store"}>
-                      <Button
-                        variant="hytale-link"
-                        data-current={
-                          ["/store", "/checkout"].includes(pathname)
-                            ? "true"
-                            : undefined
-                        }
-                      >
-                        STORE
-                      </Button>
-                    </Link>
-                  </NavigationMenuItem>
+                  {isFeatureEnabled("store") && (
+                    <>
+                      <NavbarSeparator height="h-10" />
+                      <NavigationMenuItem>
+                        <Link href={"/store"}>
+                          <Button
+                            variant="hytale-link"
+                            data-current={
+                              ["/store", "/checkout"].includes(pathname)
+                                ? "true"
+                                : undefined
+                            }
+                          >
+                            STORE
+                          </Button>
+                        </Link>
+                      </NavigationMenuItem>
+                    </>
+                  )}
                   {/* Seperator */}
                   <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
@@ -195,7 +200,7 @@ export default function RunefallNavbar() {
                   </Button>
                 </Link>
 
-                <Link href={"/products"} onClick={handleNavClick}>
+                <Link href={"/store"} onClick={handleNavClick}>
                   <Button
                     variant="hytale-link"
                     className="w-full justify-center"
