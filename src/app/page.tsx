@@ -38,7 +38,7 @@ export function HomePageComponent() {
   }, [status, callbackUrl, router]);
   return (
     // <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen"></div>
-    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
       <div
         className="absolute inset-0 bg-linear-to-b from-[#220548] via-[#22054880] to-transparent pointer-events-none"
         style={{ height: "50vh" }}
