@@ -120,7 +120,7 @@ export default function RunefallNavbar() {
                   {/* Seperator */}
                   <NavbarSeparator height="h-10" />
                   <NavigationMenuItem>
-                    <Link href={"/"}>
+                    <Link href={"/support"}>
                       <Button
                         variant="hytale-link"
                         data-current={
@@ -223,7 +223,7 @@ export default function RunefallNavbar() {
                   </Button>
                 </Link>
 
-                <Link href={"/"} onClick={handleNavClick}>
+                <Link href={"/support"} onClick={handleNavClick}>
                   <Button
                     variant="hytale-link"
                     className="w-full justify-center"
