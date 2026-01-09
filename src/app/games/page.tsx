@@ -28,6 +28,12 @@ type Game = {
 
 const Games: Game[] = [
   {
+    name: "SURVIVAL",
+    description: "Play vanilla survival with your friends or alone.",
+    inDevelopment: false,
+    backgroundUrl: "/images/games/survival-background.png",
+  },
+  {
     name: "CHAMPIONS",
     description: "Battle it out in a 5 vs 5 team duel!",
     inDevelopment: true,
@@ -111,7 +117,7 @@ function GamesPageComponent() {
 
         <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-8 items-end my-12">
           {Games.map((game: Game) => (
-            <div key={game.name} className="flex-1">
+            <div key={game.name} className={`flex-1`}>
               <GameCardComponent {...game} />
             </div>
           ))}

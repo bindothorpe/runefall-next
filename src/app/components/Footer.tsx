@@ -102,7 +102,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://discord.gg/your-invite-link"
+                  href={process.env.NEXT_PUBLIC_DISCORD_INVITE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground text-sm hover:text-primary transition-colors inline-flex items-center gap-2"

@@ -94,7 +94,7 @@ export function HomePageComponent() {
           <h1
             className={`text-4xl font-bold text-center runefall-text-highlight-gradient ${lexend.className}`}
           >
-            What is Runefall
+            What is Runefall?
           </h1>
           <div className="flex flex-col gap-4">
             <p className="text-center">
@@ -135,6 +135,7 @@ export function HomePageComponent() {
             name={"High-Quality Minigames"}
             description="Polished, competitive gameplay experiences crafted with attention to detail"
             inDevelopment={false}
+            backgroundUrl="/images/home/minigames.png"
           />
         </div>
         <div className="flex-1">
@@ -142,6 +143,7 @@ export function HomePageComponent() {
             name={"Pick Up and Play"}
             description="Jump in anytime without long commitments or grinds, perfect for quick sessions"
             inDevelopment={false}
+            backgroundUrl="/images/home/pick-up-and-play.png"
           />
         </div>
         <div className="flex-1">
@@ -149,6 +151,7 @@ export function HomePageComponent() {
             name={"Community First"}
             description="Build friendships, team up with players, and be part of a welcoming social environment"
             inDevelopment={false}
+            backgroundUrl="/images/home/community.png"
           />
         </div>
         <div className="flex-1">
@@ -156,6 +159,7 @@ export function HomePageComponent() {
             name={"Casual to Competitive"}
             description="Whether you're playing for fun or climbing the ranks, there's a place for everyone"
             inDevelopment={false}
+            backgroundUrl="/images/home/casual-to-competitive.png"
           />
         </div>
       </div>
