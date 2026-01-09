@@ -98,77 +98,85 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="container mx-auto px-6 max-w-xl pt-12 -mb-20 flex flex-col gap-6 min-h-screen">
-      <h1
-        className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-6 ${lexend.className}`}
-      >
-        SUPPORT
-      </h1>
-      <Card
-        variant={"hytale"}
-        className="gap-0 justify-between bg-[#322059] shadow-[0_0_20px_rgba(0,0,0,0.3)]"
-      >
-        <CardContent>
-          {message && (
-            <div
-              className={`mb-4 p-3 rounded-md ${
-                message.type === "success"
-                  ? "bg-green-500/20 text-green-400 border border-green-500/50"
-                  : "bg-red-500/20 text-red-400 border border-red-500/50"
-              }`}
-            >
-              {message.text}
-            </div>
-          )}
-
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2">
-              <div>
-                <Label className="text-xl text-foreground" htmlFor="email">
-                  Email
-                </Label>
-                <p>We'll use this to get back to you.</p>
-              </div>
-              <Input
-                id="email"
-                type="email"
-                placeholder="email@example.com"
-                value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
-                disabled={isSubmitting}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <div>
-                <Label className="text-xl text-foreground" htmlFor="message">
-                  Message
-                </Label>
-                <p>Tell us about your questions, issues, or feedback.</p>
-              </div>
-              <Textarea
-                id="message"
-                placeholder="Enter your message..."
-                value={formData.message}
-                onChange={(e) => handleInputChange("message", e.target.value)}
-                disabled={isSubmitting}
-                rows={6}
-              />
-            </div>
-          </div>
-        </CardContent>
-        <CustomSeparator className="my-12" />
-        <CardFooter>
-          <Button
-            className="w-full"
-            variant={"hytale"}
-            onClick={handleSubmit}
-            disabled={isSubmitting}
+    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
+      <div className="container mx-auto px-4 py-12 max-w-xl pt-32">
+        <div className="mb-12">
+          <h1
+            className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-2 ${lexend.className}`}
           >
-            {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
-          </Button>
-        </CardFooter>
-      </Card>
+            SUPPORT
+          </h1>
+          <p className="text-center text-xl">
+            Do you have any questions, issues with your profile, or general
+            feedback? Contact us trough our form.
+          </p>
+        </div>
+        <Card
+          variant={"hytale"}
+          className="gap-0 justify-between bg-[#322059] shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+        >
+          <CardContent>
+            {message && (
+              <div
+                className={`mb-4 p-3 rounded-md ${
+                  message.type === "success"
+                    ? "bg-green-500/20 text-green-400 border border-green-500/50"
+                    : "bg-red-500/20 text-red-400 border border-red-500/50"
+                }`}
+              >
+                {message.text}
+              </div>
+            )}
+
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div>
+                  <Label className="text-xl text-foreground" htmlFor="email">
+                    Email
+                  </Label>
+                  <p>We'll use this to get back to you.</p>
+                </div>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="email@example.com"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <div>
+                  <Label className="text-xl text-foreground" htmlFor="message">
+                    Message
+                  </Label>
+                  <p>Tell us about your questions, issues, or feedback.</p>
+                </div>
+                <Textarea
+                  id="message"
+                  placeholder="Enter your message..."
+                  value={formData.message}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  disabled={isSubmitting}
+                  rows={6}
+                />
+              </div>
+            </div>
+          </CardContent>
+          <CustomSeparator className="my-12" />
+          <CardFooter>
+            <Button
+              className="w-full"
+              variant={"hytale"}
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
