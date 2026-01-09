@@ -1,10 +1,5 @@
 import { resend } from "@/lib/resend";
-import { render, toPlainText } from "@react-email/render";
-import { Theme } from "next-auth";
-import { SendVerificationRequestParams } from "next-auth/providers";
-import WelcomeEmail from "@/app/components/email/WelcomeEmail";
-import React from "react";
-import { createTransport } from "nodemailer";
+import { toPlainText } from "@react-email/render";
 
 // export async function sendVerificationRequest(params: SendVerificationRequestParams) {
 //   const { identifier, url, provider, theme } = params
@@ -24,12 +19,11 @@ import { createTransport } from "nodemailer";
 //   }
 // }
 
-export async function sendVerificationRequest(
-  params: SendVerificationRequestParams
-) {
-  const { identifier, url, provider, theme } = params;
+export async function sendVerificationRequest(params: any) {
+  const { identifier, url, provider } = params;
   const { host } = new URL(url);
-  const previewText = "Click to sign in to Runefall - your secure login link is ready"
+  const previewText =
+    "Click to sign in to Runefall - your secure login link is ready";
 
   const html = htmlMail({ url, host, previewText });
   const text = toPlainText(html);
@@ -77,7 +71,7 @@ export async function sendVerificationRequest(
  *
  * @note We don't add the email address to avoid needing to escape it, if you do, remember to sanitize it!
  */
-function htmlMail(params: { url: string; host: string; previewText: string; }) {
+function htmlMail(params: { url: string; host: string; previewText: string }) {
   const { url, host, previewText } = params;
 
   return `

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { lexend } from "../fonts";
 import CustomSeparator from "../components/CustomSeparator";
+import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
   return (
@@ -27,12 +28,16 @@ export function SignInPageComponent() {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       setIsLoading(true);
-      await signIn("email", { email, callbackUrl });
+      await signIn("nodemailer", {
+        email,
+        callbackUrl,
+      });
       setIsLoading(false);
     }
   };
