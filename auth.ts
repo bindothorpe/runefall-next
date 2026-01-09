@@ -10,11 +10,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   ...authConfig,
   providers: [
-    ...authConfig.providers,
     Email({
       server: process.env.EMAIL_SERVER as string,
       from: process.env.EMAIL_FROM as string,
       sendVerificationRequest: sendVerificationRequest,
     }),
+    ...authConfig.providers,
   ],
-})
+});
