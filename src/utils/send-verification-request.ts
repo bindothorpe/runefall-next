@@ -21,11 +21,15 @@ import { toPlainText } from "@react-email/render";
 
 export async function sendVerificationRequest(params: any) {
   const { identifier, url, provider } = params;
-  const { host } = new URL(url);
+
+  const productionUrl = process.env.AUTH_URL || 'https://runefall.net';
+  const fixedUrl = url.replace(/http:\/\/localhost:\d+/g, productionUrl);
+
+  const { host } = new URL(fixedUrl);
   const previewText =
     "Click to sign in to Runefall - your secure login link is ready";
 
-  const html = htmlMail({ url, host, previewText });
+  const html = htmlMail({ url: fixedUrl, host, previewText });
   const text = toPlainText(html);
 
   try {

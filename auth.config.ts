@@ -18,7 +18,7 @@ export default {
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Force production URL
-      const productionUrl = process.env.NEXTAUTH_URL || baseUrl;
+      const productionUrl = process.env.AUTH_URL || baseUrl;
       
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${productionUrl}${url}`;
