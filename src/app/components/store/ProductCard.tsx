@@ -7,6 +7,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,14 +15,49 @@ import Stripe from "stripe";
 import { lexend } from "@/app/fonts";
 
 interface ProductCardProps {
-  product: Stripe.Product;
+  product?: Stripe.Product;
   className?: string;
+  skeleton?: boolean;
 }
 
-export default function ProductCard({ product, className }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className,
+  skeleton = false,
+}: ProductCardProps) {
+  // Render skeleton state
+  if (skeleton || !product) {
+    return (
+      <Card
+        variant={"hytale"}
+        className={cn(
+          "aspect-3/4 gap-0 justify-between bg-[#322059] shadow-[0_0_20px_rgba(0,0,0,0.8)] overflow-visible",
+          className
+        )}
+      >
+        <CardContent className="w-full">
+          {/* Skeleton Image */}
+          <div className="relative w-full aspect-square">
+            <Skeleton className="w-full h-full" />
+          </div>
+        </CardContent>
+        <CardFooter className="flex flex-col align-middle justify-end gap-2 py-2">
+          <Skeleton className="h-6 w-3/4" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-5/6" />
+        </CardFooter>
+        <CardAction className="w-full px-6">
+          <Skeleton className="h-10 w-full" />
+        </CardAction>
+      </Card>
+    );
+  }
+
+  // Extract price information
   const price = product.default_price as Stripe.Price;
   const amount = price?.unit_amount ? price.unit_amount / 100 : 0;
   const currency = price?.currency?.toUpperCase() || "USD";
+
   return (
     <Card
       variant={"hytale"}
@@ -55,7 +91,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
           {product.name}
         </p>
         {product.description && (
-          <p className=" mb-4 grow text-center">{product.description}</p>
+          <p className="mb-4 grow text-center">{product.description}</p>
         )}
       </CardFooter>
       <CardAction className="w-full px-6">
