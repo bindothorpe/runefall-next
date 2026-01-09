@@ -5,6 +5,7 @@ import ProductCard from "../components/store/ProductCard";
 import { lexend } from "../fonts";
 import CustomSeparator from "../components/CustomSeparator";
 import { Skeleton } from "@/components/ui/skeleton";
+import BackgroundImage from "../components/BackgroundImage";
 
 // Skeleton component for product cards
 function ProductCardSkeleton() {
@@ -72,8 +73,12 @@ async function ProductsList() {
 
 export default function ProductsPage() {
   return (
-    <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen">
-      <div className="container mx-auto px-4 py-12 max-w-5xl pt-32">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 w-full min-h-screen overflow-hidden">
+      <BackgroundImage
+        url="/images/background/home-background-2.png"
+        alt="Games Background"
+      />
+      <div className="container mx-auto px-4 py-12 max-w-5xl pt-32 z-10">
         <h1
           className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-2 ${lexend.className}`}
         >

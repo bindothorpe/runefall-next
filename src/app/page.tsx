@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/input-group";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
+import BackgroundImage from "./components/BackgroundImage";
 
 export default function HomePage() {
   return (
@@ -49,8 +50,14 @@ export function HomePageComponent() {
   }, [status, callbackUrl, router]);
 
   return (
-    // <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen"></div>
-    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 w-full min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <BackgroundImage
+        url="/images/background/home-background-2.png"
+        alt="Home Background"
+      />
+
+      {/* Content */}
       <div className="relative z-10 flex flex-col items-center gap-10 w-full">
         <Image
           src="/images/branding/logo.png"
@@ -82,7 +89,7 @@ export function HomePageComponent() {
           </Button>
         </CtaContainer>
       </div>
-      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 px-4 md:px-8 items-end">
+      <div className="relative z-10 container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 px-4 md:px-8 items-end">
         <div className="flex flex-col flex-1 gap-8">
           <h1
             className={`text-4xl font-bold text-center runefall-text-highlight-gradient ${lexend.className}`}
@@ -115,9 +122,9 @@ export function HomePageComponent() {
         </div>
       </div>
 
-      <CustomSeparator className="my-12" />
+      <CustomSeparator className="my-12 relative z-10" />
 
-      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 px-4 md:px-8 items-end">
+      <div className="relative z-10 container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 px-4 md:px-8 items-end">
         <h1
           className={`text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}
         >
@@ -153,11 +160,11 @@ export function HomePageComponent() {
         </div>
       </div>
 
-      <CustomSeparator className="my-12" />
+      <CustomSeparator className="my-12 relative z-10" />
 
       <div
         id="server-ip"
-        className="flex flex-col gap-20 mb-48 px-4 md:px-8 items-center w-full"
+        className="relative z-10 flex flex-col gap-20 mb-48 px-4 md:px-8 items-center w-full"
       >
         <h1
           className={`max-w-6xl text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}

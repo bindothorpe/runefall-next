@@ -62,8 +62,8 @@ function Button({
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
-        <span className="button__topDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:top-0 before:left-0 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:top-0 after:right-0 after:rotate-90" />
-        <span className="button__bottomDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-101 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:bottom-0 before:left-0 before:-rotate-90 after:content-[''] after:block after:absolute after:z-101 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:bottom-0 after:right-0 after:rotate-180" />
+        <span className="button__topDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-99 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:top-0 before:left-0 after:content-[''] after:block after:absolute after:z-99 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:top-0 after:right-0 after:rotate-90" />
+        <span className="button__bottomDecorations absolute inset-0 pointer-events-none before:content-[''] before:block before:absolute before:z-99 before:w-3 before:h-3 before:bg-[url('/images/components/button-corner.png')] before:bg-size-[12px] before:bottom-0 before:left-0 before:-rotate-90 after:content-[''] after:block after:absolute after:z-99 after:w-3 after:h-3 after:bg-[url('/images/components/button-corner.png')] after:bg-size-[12px] after:bottom-0 after:right-0 after:rotate-180" />
         <span className="button__inner">{children}</span>
       </Comp>
     );

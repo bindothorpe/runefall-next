@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { lexend } from "../fonts";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import BackgroundImage from "../components/BackgroundImage";
 
 export default function GamesPage() {
   return (
@@ -92,8 +93,13 @@ export function GameCardComponent(game: Game) {
 
 function GamesPageComponent() {
   return (
-    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
-      <div className="container mx-auto px-4 py-12 max-w-5xl pt-32">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 w-full min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <BackgroundImage
+        url="/images/background/home-background-2.png"
+        alt="Games Background"
+      />
+      <div className="container mx-auto px-4 py-12 max-w-5xl pt-32 z-10">
         <h1
           className={`text-5xl runefall-text-gradient font-bold text-center mb-2 ${lexend.className}`}
         >

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import BackgroundImage from "../components/BackgroundImage";
 
 export default function SupportPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -98,8 +99,12 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
-      <div className="container mx-auto px-4 py-12 max-w-xl pt-32">
+    <div className="-mt-24 relative flex flex-col items-center gap-10 w-full min-h-screen overflow-hidden">
+      <BackgroundImage
+        url="/images/background/home-background-2.png"
+        alt="Games Background"
+      />
+      <div className="container mx-auto px-4 py-12 max-w-xl pt-32 z-10">
         <div className="mb-12">
           <h1
             className={`text-5xl text-transparent bg-clip-text bg-(image:--text-gradient) font-bold text-center mb-2 ${lexend.className}`}
