@@ -556,7 +556,7 @@ function htmlMail(
                                                                                   color: #d4d4e0;
                                                                                   font-size: 16px;
                                                                                   line-height: 1.7;
-                                                                                  text-align: left;
+                                                                                  text-align: center;
                                                                                 "
                                                                               >
                                                                                 ${message}
