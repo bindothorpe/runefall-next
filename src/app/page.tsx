@@ -17,6 +17,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
+import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 
 export default function HomePage() {
   return (
@@ -34,9 +35,11 @@ export default function HomePage() {
 
 export function HomePageComponent() {
   const { status } = useSession();
+  const { setScrollTarget } = useScrollToSection();
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+
   useEffect(() => {
     // If user is authenticated and there's a callback URL,
     // redirect to the callback URL
@@ -44,6 +47,7 @@ export function HomePageComponent() {
       router.push(callbackUrl);
     }
   }, [status, callbackUrl, router]);
+
   return (
     // <div className="relative -mt-24 bg-[url('/images/background/store_background_with_gradient.png')] bg-position-[center_top] w-full bg-no-repeat min-h-screen"></div>
     <div className="-mt-24 relative flex flex-col items-center gap-10 bg-[url('/images/background/home-background-2.png')] bg-position-[center_-8rem] md:bg-position-[center_top] w-full bg-no-repeat min-h-screen">
@@ -68,7 +72,12 @@ export function HomePageComponent() {
         </div>
 
         <CtaContainer>
-          <Button variant={"hytale"} className="w-64" size={"hytale"}>
+          <Button
+            variant={"hytale"}
+            className="w-64"
+            size={"hytale"}
+            onClick={() => setScrollTarget("server-ip")}
+          >
             PLAY NOW
           </Button>
         </CtaContainer>
@@ -146,7 +155,10 @@ export function HomePageComponent() {
 
       <CustomSeparator className="my-12" />
 
-      <div className="flex flex-col gap-20 mb-48 px-4 md:px-8 items-center w-full">
+      <div
+        id="server-ip"
+        className="flex flex-col gap-20 mb-48 px-4 md:px-8 items-center w-full"
+      >
         <h1
           className={`max-w-6xl text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}
         >

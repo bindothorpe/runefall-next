@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -16,12 +16,15 @@ import Image from "next/image";
 import CustomSeparator from "./CustomSeparator";
 import { useSession } from "next-auth/react";
 import { isFeatureEnabled } from "@/lib/featureFlags";
+import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 
 export default function RunefallNavbar() {
   const { data: session } = useSession();
   var pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { setScrollTarget } = useScrollToSection();
 
   React.useEffect(() => {
     if (pathname === "/") {
@@ -142,7 +145,14 @@ export default function RunefallNavbar() {
                   {session ? "ACCOUNT" : "SIGN IN"}
                 </Button>
               </Link>
-              <Button variant={"hytale"} size={"sm"} className="h-8">
+              <Button
+                variant={"hytale"}
+                size={"sm"}
+                className="h-8"
+                onClick={() => {
+                  setScrollTarget("server-ip", "/");
+                }}
+              >
                 PLAY NOW
               </Button>
             </div>
