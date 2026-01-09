@@ -83,7 +83,7 @@ export default function RunefallNavbar() {
                     </Link>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator height="h-10" />
+                  <NavbarSeparator height="h-8!" />
                   <NavigationMenuItem>
                     <Link href={"/games"}>
                       <Button
@@ -99,7 +99,7 @@ export default function RunefallNavbar() {
                   {/* Seperator */}
                   {isFeatureEnabled("store") && (
                     <>
-                      <NavbarSeparator height="h-10" />
+                      <NavbarSeparator height="h-8!" />
                       <NavigationMenuItem>
                         <Link href={"/store"}>
                           <Button
@@ -117,7 +117,7 @@ export default function RunefallNavbar() {
                     </>
                   )}
                   {/* Seperator */}
-                  <NavbarSeparator height="h-10" />
+                  <NavbarSeparator height="h-8!" />
                   <NavigationMenuItem>
                     <Link href={"/support"}>
                       <Button
