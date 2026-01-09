@@ -117,7 +117,7 @@ export function HomePageComponent() {
 
       <CustomSeparator className="my-12" />
 
-      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 px-4 md:px-8 items-end">
+      <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 px-4 md:px-8 items-end">
         <h1
           className={`text-4xl font-bold text-center runefall-text-gradient md:col-span-2 ${lexend.className}`}
         >

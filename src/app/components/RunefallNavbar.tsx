@@ -23,7 +23,6 @@ export default function RunefallNavbar() {
   var pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const { setScrollTarget } = useScrollToSection();
 
   React.useEffect(() => {
@@ -183,7 +182,14 @@ export default function RunefallNavbar() {
                 className="absolute left-1/2 -translate-x-1/2 -top-3 z-101 h-18 w-auto"
               />
 
-              <Button variant={"hytale"} size={"sm"} className="h-8">
+              <Button
+                variant={"hytale"}
+                size={"sm"}
+                className="h-8"
+                onClick={() => {
+                  setScrollTarget("server-ip", "/");
+                }}
+              >
                 PLAY NOW
               </Button>
             </div>
@@ -205,23 +211,27 @@ export default function RunefallNavbar() {
                   </Button>
                 </Link>
 
-                <Link href={"/games"} onClick={handleNavClick}>
-                  <Button
-                    variant="hytale-link"
-                    className="w-full justify-center"
-                  >
-                    GAMES
-                  </Button>
-                </Link>
+                {isFeatureEnabled("games") && (
+                  <Link href={"/games"} onClick={handleNavClick}>
+                    <Button
+                      variant="hytale-link"
+                      className="w-full justify-center"
+                    >
+                      GAMES
+                    </Button>
+                  </Link>
+                )}
 
-                <Link href={"/store"} onClick={handleNavClick}>
-                  <Button
-                    variant="hytale-link"
-                    className="w-full justify-center"
-                  >
-                    STORE
-                  </Button>
-                </Link>
+                {isFeatureEnabled("store") && (
+                  <Link href={"/store"} onClick={handleNavClick}>
+                    <Button
+                      variant="hytale-link"
+                      className="w-full justify-center"
+                    >
+                      STORE
+                    </Button>
+                  </Link>
+                )}
 
                 <Link href={"/support"} onClick={handleNavClick}>
                   <Button

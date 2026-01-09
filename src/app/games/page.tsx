@@ -80,7 +80,7 @@ export function GameCardComponent(game: Game) {
           </Badge>
         )}
         <h2
-          className={`text-3xl ${lexend.className} runefall-text-gradient font-bold`}
+          className={`text-3xl ${lexend.className} runefall-text-gradient font-bold text-center`}
         >
           {name}
         </h2>

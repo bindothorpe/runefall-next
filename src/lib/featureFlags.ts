@@ -1,6 +1,7 @@
 type FeatureFlagConfig = {
   store: FeatureFlag;
   legal: FeatureFlag;
+  games: FeatureFlag;
 };
 
 type FeatureFlag = {
@@ -16,6 +17,10 @@ export const featureFlags: FeatureFlagConfig = {
   legal: {
 	enabled: process.env.NEXT_PUBLIC_FEATURE_LEGAL === "true",
 	paths: ["/terms", "/privacy", "/rules"]
+  },
+  games: {
+	enabled: process.env.NEXT_PUBLIC_FEATURE_GAMES === "true",
+	paths: ["/games"]
   }
 } satisfies FeatureFlagConfig;
 

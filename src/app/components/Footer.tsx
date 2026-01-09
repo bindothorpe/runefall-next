@@ -3,6 +3,9 @@ import CustomSeparator from "./CustomSeparator";
 import { isFeatureEnabled } from "@/lib/featureFlags";
 import Image from "next/image";
 import { lexend } from "../fonts";
+import { Button } from "@/components/ui/button";
+import { useScrollToSection } from "@/hooks/use-scroll-to-section";
+import PlayNowButton from "./PlayNowButton";
 
 export default function Footer() {
   return (
@@ -32,7 +35,10 @@ export default function Footer() {
             <p className="text-muted-foreground text-sm mb-3">
               Premium Hytale Minigames
             </p>
-            <p className="text-muted-foreground text-xs">© 2026 Runefall</p>
+            <p className="text-muted-foreground text-xs mb-3">
+              © 2026 Runefall
+            </p>
+            <PlayNowButton />
           </div>
 
           {/* Quick Links */}
@@ -49,14 +55,16 @@ export default function Footer() {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/games"
-                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                >
-                  Games
-                </Link>
-              </li>
+              {isFeatureEnabled("games") && (
+                <li>
+                  <Link
+                    href="/games"
+                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                  >
+                    Games
+                  </Link>
+                </li>
+              )}
               {isFeatureEnabled("store") && (
                 <li>
                   <Link
