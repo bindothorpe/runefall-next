@@ -13,4 +13,5 @@ export default {
 	signOut: "/",
 	verifyRequest: "/auth/verify-request",
   },
+  trustHost: true
 } satisfies NextAuthConfig;
