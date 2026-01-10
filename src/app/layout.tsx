@@ -13,7 +13,7 @@ const nunito_Sans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "Runefall",
   description:
-    "Polished, competitive gameplay experiences crafted with attention to detail",
+    "Runefall is a premium Hytale server dedicated to high-quality competitive minigames and community-driven experiences.",
 };
 export default function RootLayout({
   children,
