@@ -5,13 +5,18 @@ import { NextRequest } from "next/server";
 export const GET = handlers.GET
 export const POST = handlers.POST
 
-// Handle HEAD requests by converting them to GET
-export async function HEAD(request: NextRequest) {
-  console.log("⚠️ HEAD request intercepted, converting to GET");
-  console.log("Original URL:", request.url);
+// IGNORE HEAD requests completely - don't process them
+export async function HEAD(request: Request) {
+  console.log("⚠️ HEAD request from email scanner - ignoring to preserve token");
+  console.log("URL:", request.url);
   
-  // Simply call the GET handler with the same request
-  return GET(request);
+  // Return success without processing to avoid consuming the token
+  return new Response(null, { 
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html',
+    }
+  });
 }
 
 export const runtime = 'nodejs';
