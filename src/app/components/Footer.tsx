@@ -65,6 +65,16 @@ export default function Footer() {
                   </Link>
                 </li>
               )}
+              {isFeatureEnabled("leaderboards") && (
+                <li>
+                  <Link
+                    href="/leaderboards"
+                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                  >
+                    Leaderboards
+                  </Link>
+                </li>
+              )}
               {isFeatureEnabled("store") && (
                 <li>
                   <Link

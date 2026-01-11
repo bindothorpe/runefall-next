@@ -83,19 +83,41 @@ export default function RunefallNavbar() {
                     </Link>
                   </NavigationMenuItem>
                   {/* Seperator */}
-                  <NavbarSeparator height="h-8!" />
-                  <NavigationMenuItem>
-                    <Link href={"/games"}>
-                      <Button
-                        variant="hytale-link"
-                        data-current={
-                          pathname === "/games" ? "true" : undefined
-                        }
-                      >
-                        GAMES
-                      </Button>
-                    </Link>
-                  </NavigationMenuItem>
+                  {isFeatureEnabled("games") && (
+                    <>
+                      <NavbarSeparator height="h-8!" />
+                      <NavigationMenuItem>
+                        <Link href={"/games"}>
+                          <Button
+                            variant="hytale-link"
+                            data-current={
+                              pathname === "/games" ? "true" : undefined
+                            }
+                          >
+                            GAMES
+                          </Button>
+                        </Link>
+                      </NavigationMenuItem>
+                    </>
+                  )}
+                  {/* Seperator */}
+                  {isFeatureEnabled("leaderboards") && (
+                    <>
+                      <NavbarSeparator height="h-8!" />
+                      <NavigationMenuItem>
+                        <Link href={"/leaderboards"}>
+                          <Button
+                            variant="hytale-link"
+                            data-current={
+                              pathname === "/leaderboards" ? "true" : undefined
+                            }
+                          >
+                            LEADERBOARDS
+                          </Button>
+                        </Link>
+                      </NavigationMenuItem>
+                    </>
+                  )}
                   {/* Seperator */}
                   {isFeatureEnabled("store") && (
                     <>
@@ -218,6 +240,17 @@ export default function RunefallNavbar() {
                       className="w-full justify-center"
                     >
                       GAMES
+                    </Button>
+                  </Link>
+                )}
+
+                {isFeatureEnabled("leaderboards") && (
+                  <Link href={"/leaderboards"} onClick={handleNavClick}>
+                    <Button
+                      variant="hytale-link"
+                      className="w-full justify-center"
+                    >
+                      LEADERBOARDS
                     </Button>
                   </Link>
                 )}
