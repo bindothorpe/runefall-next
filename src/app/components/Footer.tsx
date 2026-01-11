@@ -6,6 +6,8 @@ import { lexend } from "../fonts";
 import { Button } from "@/components/ui/button";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import PlayNowButton from "./PlayNowButton";
+import { Page, pages } from "@/models/pages";
+import { toTitleCase } from "@/utils/string-util";
 
 export default function Footer() {
   return (
@@ -55,44 +57,22 @@ export default function Footer() {
                   Home
                 </Link>
               </li>
-              {isFeatureEnabled("games") && (
-                <li>
-                  <Link
-                    href="/games"
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                  >
-                    Games
-                  </Link>
-                </li>
-              )}
-              {isFeatureEnabled("leaderboards") && (
-                <li>
-                  <Link
-                    href="/leaderboards"
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                  >
-                    Leaderboards
-                  </Link>
-                </li>
-              )}
-              {isFeatureEnabled("store") && (
-                <li>
-                  <Link
-                    href="/store"
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                  >
-                    Store
-                  </Link>
-                </li>
-              )}
-              <li>
-                <Link
-                  href="/support"
-                  className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                >
-                  Support
-                </Link>
-              </li>
+              {pages.map((page: Page) => {
+                if (page.featureFlag && !isFeatureEnabled(page.featureFlag)) {
+                  return null;
+                }
+                return (
+                  <li key={page.label}>
+                    <Link
+                      key={page.label}
+                      href={page.navigationUrl}
+                      className="text-muted-foreground text-sm hover:text-primary transition-colors"
+                    >
+                      {toTitleCase(page.label)}
+                    </Link>
+                  </li>
+                );
+              })}
               <li>
                 <Link
                   href="/account"
