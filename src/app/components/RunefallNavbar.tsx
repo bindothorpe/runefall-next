@@ -17,6 +17,7 @@ import CustomSeparator from "./CustomSeparator";
 import { useSession } from "next-auth/react";
 import { isFeatureEnabled } from "@/lib/featureFlags";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
+import { Page, pages } from "@/models/pages";
 
 export default function RunefallNavbar() {
   const { data: session } = useSession();
@@ -82,76 +83,33 @@ export default function RunefallNavbar() {
                       </Button>
                     </Link>
                   </NavigationMenuItem>
-                  {/* Seperator */}
-                  {isFeatureEnabled("games") && (
-                    <>
-                      <NavbarSeparator height="h-8!" />
-                      <NavigationMenuItem>
-                        <Link href={"/games"}>
-                          <Button
-                            variant="hytale-link"
-                            data-current={
-                              pathname === "/games" ? "true" : undefined
-                            }
-                          >
-                            GAMES
-                          </Button>
-                        </Link>
-                      </NavigationMenuItem>
-                    </>
-                  )}
-                  {/* Seperator */}
-                  {isFeatureEnabled("leaderboards") && (
-                    <>
-                      <NavbarSeparator height="h-8!" />
-                      <NavigationMenuItem>
-                        <Link href={"/leaderboards"}>
-                          <Button
-                            variant="hytale-link"
-                            data-current={
-                              pathname === "/leaderboards" ? "true" : undefined
-                            }
-                          >
-                            LEADERBOARDS
-                          </Button>
-                        </Link>
-                      </NavigationMenuItem>
-                    </>
-                  )}
-                  {/* Seperator */}
-                  {isFeatureEnabled("store") && (
-                    <>
-                      <NavbarSeparator height="h-8!" />
-                      <NavigationMenuItem>
-                        <Link href={"/store"}>
-                          <Button
-                            variant="hytale-link"
-                            data-current={
-                              ["/store", "/checkout"].includes(pathname)
-                                ? "true"
-                                : undefined
-                            }
-                          >
-                            STORE
-                          </Button>
-                        </Link>
-                      </NavigationMenuItem>
-                    </>
-                  )}
-                  {/* Seperator */}
-                  <NavbarSeparator height="h-8!" />
-                  <NavigationMenuItem>
-                    <Link href={"/support"}>
-                      <Button
-                        variant="hytale-link"
-                        data-current={
-                          pathname === "/support" ? "true" : undefined
-                        }
-                      >
-                        SUPPORT
-                      </Button>
-                    </Link>
-                  </NavigationMenuItem>
+                  {pages.map((page: Page) => {
+                    if (
+                      page.featureFlag &&
+                      !isFeatureEnabled(page.featureFlag)
+                    ) {
+                      return null;
+                    }
+                    return (
+                      <React.Fragment key={page.label}>
+                        <NavbarSeparator height="h-8!" />
+                        <NavigationMenuItem>
+                          <Link href={page.navigationUrl}>
+                            <Button
+                              variant="hytale-link"
+                              data-current={
+                                pathname === page.navigationUrl
+                                  ? "true"
+                                  : undefined
+                              }
+                            >
+                              {page.label}
+                            </Button>
+                          </Link>
+                        </NavigationMenuItem>
+                      </React.Fragment>
+                    );
+                  })}
                 </NavigationMenuList>
               </NavigationMenu>
             </nav>
@@ -233,47 +191,26 @@ export default function RunefallNavbar() {
                   </Button>
                 </Link>
 
-                {isFeatureEnabled("games") && (
-                  <Link href={"/games"} onClick={handleNavClick}>
-                    <Button
-                      variant="hytale-link"
-                      className="w-full justify-center"
+                {pages.map((page: Page) => {
+                  if (page.featureFlag && !isFeatureEnabled(page.featureFlag)) {
+                    return null;
+                  }
+                  return (
+                    <Link
+                      key={page.label}
+                      href={page.navigationUrl}
+                      onClick={handleNavClick}
                     >
-                      GAMES
-                    </Button>
-                  </Link>
-                )}
+                      <Button
+                        variant="hytale-link"
+                        className="w-full justify-center"
+                      >
+                        {page.label}
+                      </Button>
+                    </Link>
+                  );
+                })}
 
-                {isFeatureEnabled("leaderboards") && (
-                  <Link href={"/leaderboards"} onClick={handleNavClick}>
-                    <Button
-                      variant="hytale-link"
-                      className="w-full justify-center"
-                    >
-                      LEADERBOARDS
-                    </Button>
-                  </Link>
-                )}
-
-                {isFeatureEnabled("store") && (
-                  <Link href={"/store"} onClick={handleNavClick}>
-                    <Button
-                      variant="hytale-link"
-                      className="w-full justify-center"
-                    >
-                      STORE
-                    </Button>
-                  </Link>
-                )}
-
-                <Link href={"/support"} onClick={handleNavClick}>
-                  <Button
-                    variant="hytale-link"
-                    className="w-full justify-center"
-                  >
-                    SUPPORT
-                  </Button>
-                </Link>
                 <CustomSeparator />
                 <Link
                   href={session ? "/account" : "/signin"}
