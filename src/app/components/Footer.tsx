@@ -62,7 +62,7 @@ export default function Footer() {
                   return null;
                 }
                 return (
-                  <li>
+                  <li key={page.label}>
                     <Link
                       key={page.label}
                       href={page.navigationUrl}
