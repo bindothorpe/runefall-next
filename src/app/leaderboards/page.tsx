@@ -284,7 +284,7 @@ export default function LeaderboardsPage() {
                 className="absolute w-full h-full z-100 flex justify-center items-center"
                 style={{
                   backgroundImage:
-                    "linear-gradient(0deg, rgba(31, 19, 50, 0.95) 40%, rgba(31, 19, 50, 0.3) 100%)",
+                    "linear-gradient(0deg, rgba(31, 19, 50, 0.95) 40%, rgba(31, 19, 50, 0.7) 100%)",
 
                   zIndex: 9999,
                 }}
