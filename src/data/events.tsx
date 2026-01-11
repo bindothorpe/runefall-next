@@ -19,7 +19,7 @@ export const events: Events = [
   },
   {
     title: "Growing the community",
-    description: "Engage with people, make connections and finding talent.",
+    description: "Engaging with people, making connections and finding talent.",
     isCompleted: false,
     isCurrent: true,
     timelineTimestamp: "Now",
