@@ -52,14 +52,22 @@ export default function VerticalEventTimeline() {
       <div className="relative">
         {/* Timeline line - unfilled */}
         <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 z-0">
-          <div className="h-full w-full bg-linear-to-b from-primary/20 from-90% to-100% to-transparent"></div>
+          <motion.div
+            className="h-full w-full bg-linear-to-b from-primary/20 from-90% to-100% to-transparent"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.5 }}
+          ></motion.div>
         </div>
         {/* Timeline line - filled up to current event */}
         <motion.div
           className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-primary z-0"
-          initial={{ height: 0 }}
+          initial={{ height: 0, opacity: 0 }}
           animate={{
             height: filledHeight,
+            opacity: 1,
           }}
           transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
         ></motion.div>

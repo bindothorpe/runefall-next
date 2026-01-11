@@ -3,6 +3,7 @@ import Image from "next/image";
 export type BackgroundImageProps = {
   url: string;
   alt: string;
+  opacity?: string;
 };
 
 export default function BackgroundImage(props: BackgroundImageProps) {
@@ -12,7 +13,7 @@ export default function BackgroundImage(props: BackgroundImageProps) {
         src={props.url}
         alt={props.alt}
         fill
-        className="relative object-contain object-[center_-8rem] md:object-[center_top]"
+        className={`relative object-contain object-[center_-8rem] md:object-[center_top] ${props.opacity}`}
         priority
         quality={100}
         unoptimized={true}
